@@ -29,11 +29,12 @@ stages:
   - name: example-commands
     type: shell
     commands:
-    - wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
-    - echo 'deb [arch=amd64] https://pkg.surfacelinux.com/debian release main' | sudo tee /etc/apt/sources.list.d/linux-surface.list
-    - sudo apt update
-    - sudo apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
-    - sudo apt install linux-surface-secureboot-mok
+    - lpkg --unlock
+    - wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc | gpg --dearmor | dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
+    - echo 'deb [arch=amd64] https://pkg.surfacelinux.com/debian release main' | tee /etc/apt/sources.list.d/linux-surface.list
+    - apt-get update
+    - apt-get install linux-image-surface linux-headers-surface libwacom-surface iptsd
+    - apt-get install linux-surface-secureboot-mok
 
 
   - name: example-modules
