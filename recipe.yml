@@ -1,3 +1,4 @@
+#vib
 name: Custom Vanilla Desktop
 id: vanilla-custom
 stages:
@@ -29,9 +30,16 @@ stages:
   - name: example-commands
     type: shell
     commands:
-    - lpkg --unlock
     - wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc | gpg --dearmor | dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
+
+  - name: example-commands
+    type: shell
+    commands:
     - echo 'deb [arch=amd64] https://pkg.surfacelinux.com/debian release main' | tee /etc/apt/sources.list.d/linux-surface.list
+  
+  - name: example-commands
+    type: shell
+    commands:
     - apt-get update
     - apt-get install linux-image-surface linux-headers-surface libwacom-surface iptsd
     - apt-get install linux-surface-secureboot-mok
