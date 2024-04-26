@@ -18,7 +18,7 @@ stages:
     commands:
     - lpkg --unlock
     - apt-get update
-
+s
   # Put your custom actions behind this comment
 
   - name: example-packages
@@ -41,8 +41,8 @@ stages:
     type: shell
     commands:
     - apt-get update
-    - apt-get install linux-image-surface linux-headers-surface libwacom-surface iptsd
-    - apt-get install linux-surface-secureboot-mok
+    - apt-get -y install linux-image-surface linux-headers-surface libwacom-surface iptsd
+    - apt-get -y install linux-surface-secureboot-mok
 
 
   - name: example-modules
