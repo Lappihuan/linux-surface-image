@@ -21,29 +21,28 @@ stages:
 
   # Put your custom actions behind this comment
 
-  - name: example-packages
-    type: apt
-    source:
-      packages:
-      - vim
-
-  - name: example-commands
+  - name: gpg-key
     type: shell
     commands:
     - wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc | gpg --dearmor | dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
 
-  - name: example-commands
+  - name: sources-list
     type: shell
     commands:
     - echo 'deb [arch=amd64] https://pkg.surfacelinux.com/debian release main' | tee /etc/apt/sources.list.d/linux-surface.list
   
-  - name: example-commands
+  - name: install
     type: shell
     commands:
     - apt-get update
     - apt-get -y install linux-image-surface linux-headers-surface libwacom-surface iptsd
     - apt-get -y install linux-surface-secureboot-mok
 
+  - name: wifi-adapter
+    type: apt
+    source:
+      packages:
+      - firmware-libertas
 
   - name: example-modules
     type: includes
